@@ -11,9 +11,11 @@
 
 <body>
     <h1>Bookmarks</h1>
+
+    <br>
     <div class="container">
         <div class="row">
-            <div class="col">
+            <div class="col-6">
                 <div class="card">
                     <div class="card-body">
                         <form>
@@ -36,8 +38,19 @@
                     </div>
                 </div>
             </div>
-            <div class="col">
-
+            <div class="col-6">
+                <table class="table" id="tb">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Url</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">Eliminar registro</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lista_Marcadores"></tbody>
+                </table>
             </div>
         </div>
     </div>
@@ -50,8 +63,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="bookmarks.js"></script>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script src="bookmarks.js"></script>
+
+
 
 </html>

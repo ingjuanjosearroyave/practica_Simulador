@@ -38,10 +38,15 @@ let consultarMarcador = async () => {
 
 /*
 let editarMarcador = async (marcador, id) => {
+    if(persona.id != id){
+           throw { ok: false, mensaje: "El id enviado no corresponde" };
+    }
     let _servicio = new ServicioPg();
-    let sql = `UPDATE public.marcador set url = '${marcador.url}',
+    let sql = `UPDATE public.marcador set url = 
+                '${marcador.url}',
                  nombre = '${marcador.nombre}',
-                 descripcion = '${marcador.descripcion}'`;
+                 descripcion = '${marcador.descripcion}'
+                 WHERE id=${marcador.id}`;
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
 };*/

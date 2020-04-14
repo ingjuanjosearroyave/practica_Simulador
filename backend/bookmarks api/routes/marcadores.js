@@ -44,7 +44,7 @@ router.post("/marcadores", async (req, res) => {
 /**
  * Editar Marcador
  */
-router.put("/marcadores", (req, res) => {
+router.put("/marcadores/:id", (req, res) => {
     try {
       let id = req.params.id;
       let info_marcador = req.body;
@@ -66,7 +66,7 @@ router.put("/marcadores", (req, res) => {
 /**
  * Eliminar Marcador
  */
-router.delete("/marcadores", async (req, res) => {
+router.delete("/marcadores/:id", async (req, res) => {
     let info_reg = await req.body;
     _controlador
         .eliminar(info_reg)
