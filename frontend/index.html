@@ -20,20 +20,18 @@
                     <div class="card-body">
                         <form>
                             <div class="form-group">
-                                <label for="txtNombre">Nombre</label>
+                                <label for="nombre">Nombre</label>
                                 <input type="text" class="form-control" id="nombre" />
                             </div>
                             <div class="form-group">
-                                <label for="txtUrl">Url </label>
+                                <label for="url">Url </label>
                                 <input type="text" class="form-control" id="url" />
                             </div>
                             <div class="form-group">
-                                <label for="txtDescripcion">Descripción</label>
+                                <label for="descripcion">Descripción</label>
                                 <input type="text" class="form-control" id="descripcion" />
                             </div>
-                            <button type="submit" class="btn btn-primary" onclick="crearBookmark()">
-                                Guardar Bookmark
-                            </button>
+                            <button type="submit" class="btn btn-primary" onclick="crearBookmark()">Registrar</button>
                         </form>
                     </div>
                 </div>
@@ -67,7 +65,33 @@
 
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-<script src="bookmarks.js"></script>
+<script>
+    let crearBookmark = () => {
+        alert("Se Ingreso al Metodo")
+        let urlBookmark = document.getElementById("url").value;
+        let nombreBookmark = document.getElementById("nombre").value;
+        let descripcionBookmark = document.getElementById("descripcion").value;
+        if (validar(nombreBookmark, urlBookmark)) {
+            params = {
+                nombre: nombreBookmark,
+                url: urlBookmark,
+                descripcion: descripcionBookmark,
+            };
+            axios
+            .post("http://localhost:3000/marcadores", params)
+            .then((response) => {
+                console.log("Bookmark Insertado");
+                console.log(response);               
+            });
+            alert("Bookmark Insertado")
+            nombreBookmark = document.getElementById("nombre").value = "";
+            urlBookmark = document.getElementById("url").value = "";
+            descripcionBookmark = document.getElementById("descripcion").value = "";
+        } else {
+            alert("El nombre y la url son obligatorias");
+        }
+};
+</script>
 
 
 

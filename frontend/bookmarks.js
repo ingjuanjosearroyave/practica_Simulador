@@ -1,4 +1,5 @@
 
+
 let validaciones = (nombre, url) => {
     if (nombre == "") {
         return false;
@@ -12,19 +13,14 @@ let validaciones = (nombre, url) => {
 /**
  * Consulta los datos ingresados en el api con Axios
  */
-axios.get("http://localhost:3000/marcadores").then((response) => {
-    console.log("Respuesta del api");
-    console.log(response);
-}).catch(error => {
-    console.log(error);
-})
+
 
 
 /**
  * Insertar los datos ingresados en el Api's con Axios
  */
 let crearBookmark = () => {
-    try {
+        alert("Se Ingreso al Metodo")
         let nombreBookmark = document.getElementById("nombre").value;
         let urlBookmark = document.getElementById("url").value;
         let descripcionBookmark = document.getElementById("descripcion").value;
@@ -36,16 +32,17 @@ let crearBookmark = () => {
             };
             axios
             .post("http://localhost:3000/marcadores", params)
-            .then((response) => {});
+            .then((response) => {
+                console.log("Bookmark Insertado");
+                console.log(response);               
+            });
+            alert("Bookmark Insertado")
             nombreBookmark = document.getElementById("nombre").value = "";
             urlBookmark = document.getElementById("url").value = "";
             descripcionBookmark = document.getElementById("descripcion").value = "";
         } else {
             alert("El nombre y la url son obligatorias");
         }
-    } catch (error) {
-        console.log(error);
-    }
 };
 
 /**
