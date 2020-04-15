@@ -1,4 +1,8 @@
-
+/**
+ * Este metodo permite validar que el nombre y la URl no sean nulas en los campos
+ * @param {*} nombre 
+ * @param {*} url 
+ */
  let validaciones = (nombre, url) => {
     if (nombre == "") {
         return false;
@@ -9,6 +13,9 @@
     }
 };
 
+/**
+ * Permite el registro de un marcador 
+ */
 let crearBookmark = () => {
     alert("Se Ingreso al Metodo")
     let urlBookmark = document.getElementById("url").value;
@@ -35,7 +42,9 @@ let crearBookmark = () => {
     }
 };
 
-
+/**
+ * Permite consultar los marcadores de la base de datos registradas con el api
+ */
 var data = [];
 let consultar = () => {
     axios.get("http://localhost:3000/marcadores").then((response) => {
@@ -57,16 +66,32 @@ let consultar = () => {
             data += `<td>${bookmarkData[3].replace(")", "")} </td>`;
             data += '<td><button type="button" onclick="eliminarBookmark(' + bookmarkData[0].replace("(", "") +
                 ')" class="btn btn-danger btn-sm">Eliminar</button> </td>';
-            data += `<td><button type="button" class="btn btn-primary btn-sm">Editar</button> </td>`
+            data += `<td><button type="button" onclick="modificarBookmark(' + bookmarkData[0].splice("(", "") +
+            ')" class="btn btn-primary btn-sm">Editar</button> </td>`
             data += "</tr>";
         }
         lista.innerHTML = data;
     });
 };
 
-let eliminarBookmark = (idR) => {
+let modificarBookmark = (id) => {
     data = {
-        id: idR,
+        id: id,
+    };
+    axios.put("http://localhost:3000/marcadores/+id", { data }).then((response) => {
+        consultar();
+    });
+    alert("Marcador Modificado");
+};
+
+
+/**
+ * Elimina un marcador del aplicativo y de la base datos 
+ * @param {*} id 
+ */
+let eliminarBookmark = (id) => {
+    data = {
+        id: id,
     };
     axios.delete("http://localhost:3000/marcadores", { data }).then((response) => {
         consultar();
@@ -74,4 +99,6 @@ let eliminarBookmark = (idR) => {
     alert("Marcador eliminado");
 };
 
+// Consulta los datos guardados en el Api
 consultar();
+

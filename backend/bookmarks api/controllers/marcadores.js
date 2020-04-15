@@ -2,7 +2,7 @@
 const ServicioPg = require("../services/postgres");
 
 /**
- * 
+ * valida
  * @param {*} marcador 
  */
 let validarMarcador = marcador => {
@@ -15,8 +15,11 @@ let validarMarcador = marcador => {
     }
 };
 
-
-let guardarMarcador = async (marcador)  => {
+/**
+ * guardar
+ * @param {*} marcador 
+ */
+let guardarMarcador = async (marcador) => {
     let _servicio = new ServicioPg();
     let sql = `INSERT INTO public.marcador(
         url, nombre, descripcion)
@@ -28,7 +31,9 @@ let guardarMarcador = async (marcador)  => {
     return respuesta;
 };
 
-
+/**
+ * Consulta en la base 
+ */
 let consultarMarcador = async () => {
     let _servicio = new ServicioPg();
     let sql = `SELECT (id,url,nombre,descripcion) FROM public.marcador`;
@@ -36,26 +41,39 @@ let consultarMarcador = async () => {
     return respuesta;
 };
 
-/*
+/**
+ * 
+ * @param {*} marcador 
+ * @param {*} id 
+ */
 let editarMarcador = async (marcador, id) => {
-    if(persona.id != id){
-           throw { ok: false, mensaje: "El id enviado no corresponde" };
+    if (marcador.id != id) {
+        throw {
+            ok: false,
+            mensaje: "El Id del Marcador no correspende al enviado.",
+        };
     }
+    console.log("NO ENTRO");
+    
     let _servicio = new ServicioPg();
-    let sql = `UPDATE public.marcador set url = 
+    let sql = `UPDATE public.marcador SET url = 
                 '${marcador.url}',
                  nombre = '${marcador.nombre}',
                  descripcion = '${marcador.descripcion}'
-                 WHERE id=${marcador.id}`;
+                 WHERE id='${marcador.id}'`;
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
-};*/
+};
 
-let eliminarMarcador = async(id) => {
+/**
+ * 
+ * @param {*} toDelete 
+ */
+let eliminarMarcador = async (toDelete) => {
     let _servicio = new ServicioPg();
-    let sql = `DELETE FROM public.marcador WHERE documento='${id}'`;
+    let sql = `DELETE FROM public.marcador WHERE id = ${toDelete.id}`
     let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
-  };
+}
 
-module.exports = { validarMarcador, guardarMarcador, consultarMarcador, eliminarMarcador }
+module.exports = { validarMarcador, guardarMarcador, consultarMarcador, eliminarMarcador, editarMarcador }
