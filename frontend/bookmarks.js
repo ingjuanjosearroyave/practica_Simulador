@@ -3,7 +3,7 @@
  * @param {*} nombre 
  * @param {*} url 
  */
- let validaciones = (nombre, url) => {
+let validaciones = (nombre, url) => {
     if (nombre == "") {
         return false;
     } else if (url == "") {
@@ -17,7 +17,6 @@
  * Permite el registro de un marcador 
  */
 let crearBookmark = () => {
-    alert("Se Ingreso al Metodo")
     let urlBookmark = document.getElementById("url").value;
     let nombreBookmark = document.getElementById("nombre").value;
     let descripcionBookmark = document.getElementById("descripcion").value;
@@ -38,7 +37,7 @@ let crearBookmark = () => {
         descripcionBookmark = document.getElementById("descripcion").value = "";
     } else {
         console.log("La URL y el nombre son obligatorios");
-        
+
     }
 };
 
@@ -66,8 +65,7 @@ let consultar = () => {
             data += `<td>${bookmarkData[3].replace(")", "")} </td>`;
             data += '<td><button type="button" onclick="eliminarBookmark(' + bookmarkData[0].replace("(", "") +
                 ')" class="btn btn-danger btn-sm">Eliminar</button> </td>';
-            data += `<td><button type="button" onclick="modificarBookmark(' + bookmarkData[0].splice("(", "") +
-            ')" class="btn btn-primary btn-sm">Editar</button> </td>`
+            data += `<td><button type="button" onclick="cargarInfoBookmark()" class="btn btn-primary btn-sm">Editar</button> </td>`
             data += "</tr>";
         }
         lista.innerHTML = data;
@@ -75,14 +73,35 @@ let consultar = () => {
 };
 
 let modificarBookmark = (id) => {
-    data = {
-        id: id,
-    };
-    axios.put("http://localhost:3000/marcadores/+id", { data }).then((response) => {
-        consultar();
+    axios.put("http://localhost:3000/marcadores/${this.marcador.id}", this.marcador).then((response) => {
+        console.log("Modificar");
+        console.log(response);
     });
-    alert("Marcador Modificado");
+    alert("Este metodo solo funciona en el backend");
 };
+
+let cargarInfoBookmark = () => {
+    axios.get("http://localhost:3000/marcadores").then((response) => {
+        console.log("Respuesta del Api");
+        console.log(response);
+        marcador = response.data.info;
+        for (let i = 0; i < marcador.length; i++) {
+            let mark = "";
+            mark = marcador[i].row.toString();
+            ata = [];
+            ata = mark.split(",");
+            document.getElementById("url").value = ata[1];
+            document.getElementById("nombre").value = ata[2];
+            document.getElementById("descripcion").value = ata[3];
+        }
+    });
+};
+
+let limpiarCampos = () => {
+    document.getElementById("nombre").value = "";
+    document.getElementById("url").value = "";
+    document.getElementById("descripcion").value = "";
+}
 
 
 /**

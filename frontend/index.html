@@ -5,17 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bookmarks</title>
+    <link rel="stylesheet" href="../frontend/css/main.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 
 <body>
-    <h1>Bookmarks</h1>
+    <br>
+    <center>
+        <img src="../frontend/images/logo.png" alt="bookmarks">
+    </center>
     <br>
     <div class="container">
         <div class="row">
             <div class="col-6">
-                <div class="card">
+                <div class="card p-3 mb-2 bg-dark text-light font-weight-bold">
                     <div class="card-body">
                         <form>
                             <div class="form-group">
@@ -30,7 +34,12 @@
                                 <label for="descripcion">Descripción</label>
                                 <input type="text" class="form-control" id="descripcion" />
                             </div>
-                            <button type="submit" class="btn btn-warning" onclick="crearBookmark()">Registrar</button>
+                            <button type="submit" class="btn btn-info font-weight-bold" onclick="crearBookmark()">Crear
+                                Bookmark</button>
+                            <button type="submit" class="btn btn-danger font-weight-bold"
+                                onclick="limpiarCampos()">Limpiar</button>
+                            <button type="button" onclick="modificarBookmark()" id="btnEditar"
+                                class="btn btn-primary font-weight-bold">Actualizar Bookmark</button>
                         </form>
                     </div>
                 </div>
