@@ -51,11 +51,11 @@ let editarMarcador = async (marcador, id) => {
     return respuesta;
 };*/
 
-let eliminarMarcador = id => {
+let eliminarMarcador = async(id) => {
     let _servicio = new ServicioPg();
-    let sql = `DELETE FROM public.marcador WHERE id='${id}'`;
-    let respuesta =  _servicio.ejecutarSql(sql);
+    let sql = `DELETE FROM public.marcador WHERE documento='${id}'`;
+    let respuesta = await _servicio.ejecutarSql(sql);
     return respuesta;
-}
+  };
 
-module.exports = { validarMarcador, guardarMarcador, consultarMarcador }
+module.exports = { validarMarcador, guardarMarcador, consultarMarcador, eliminarMarcador }

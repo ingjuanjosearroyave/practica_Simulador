@@ -11,7 +11,6 @@
 
 <body>
     <h1>Bookmarks</h1>
-
     <br>
     <div class="container">
         <div class="row">
@@ -31,7 +30,7 @@
                                 <label for="descripcion">Descripción</label>
                                 <input type="text" class="form-control" id="descripcion" />
                             </div>
-                            <button type="submit" class="btn btn-primary" onclick="crearBookmark()">Registrar</button>
+                            <button type="submit" class="btn btn-warning" onclick="crearBookmark()">Registrar</button>
                         </form>
                     </div>
                 </div>
@@ -43,11 +42,11 @@
                             <th scope="col">Id</th>
                             <th scope="col">Url</th>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Descripcion</th>
-                            <th scope="col">Eliminar registro</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                     </thead>
-                    <tbody id="lista_Marcadores"></tbody>
+                    <tbody id="lista"></tbody>
                 </table>
             </div>
         </div>
@@ -62,35 +61,9 @@
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
 
-        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-<script>
-    let crearBookmark = () => {
-        alert("Se Ingreso al Metodo")
-        let urlBookmark = document.getElementById("url").value;
-        let nombreBookmark = document.getElementById("nombre").value;
-        let descripcionBookmark = document.getElementById("descripcion").value;
-        if (validar(nombreBookmark, urlBookmark)) {
-            params = {
-                nombre: nombreBookmark,
-                url: urlBookmark,
-                descripcion: descripcionBookmark,
-            };
-            axios
-            .post("http://localhost:3000/marcadores", params)
-            .then((response) => {
-                console.log("Bookmark Insertado");
-                console.log(response);               
-            });
-            alert("Bookmark Insertado")
-            nombreBookmark = document.getElementById("nombre").value = "";
-            urlBookmark = document.getElementById("url").value = "";
-            descripcionBookmark = document.getElementById("descripcion").value = "";
-        } else {
-            alert("El nombre y la url son obligatorias");
-        }
-};
-</script>
+    <script src="bookmarks.js"></script>
 
 </body>
 

@@ -66,17 +66,16 @@ router.put("/marcadores/:id", (req, res) => {
 /**
  * Eliminar Marcador
  */
-router.delete("/marcadores/:id", async (req, res) => {
-    let info_reg = await req.body;
+router.delete("/marcadores/:id", (req, res) => {
+    let id = req.params.id;
     _controlador
-        .eliminar(info_reg)
-        .then((respuestaDB) => {
-            let registros = respuestaDB;
-            res.send({ ok: true, info: registros, mensaje: "Marcador Eliminado" });
-        })
-        .catch((error) => {
-            res.send(error);
-        });
-});
+      .eliminarMarcador(id)
+      .then((respuestaDB) => {
+        res.send({ ok: true, info: {}, mensaje: "Marcador eliminado" });
+      })
+      .catch((error) => {
+        res.send(error);
+      });
+  });
 
 module.exports = router
