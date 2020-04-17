@@ -16,4 +16,18 @@
  - descripcion
  - url
 
+# Scrip Tabla Marcador en Postgres
+CREATE TABLE public.marcador
+(
+    id bigint NOT NULL DEFAULT nextval('marcador_id_seq'::regclass),
+    url text COLLATE pg_catalog."default" NOT NULL,
+    nombre text COLLATE pg_catalog."default" NOT NULL,
+    descripcion text COLLATE pg_catalog."default",
+    CONSTRAINT marcador_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE public.marcador
+    OWNER to postgres;
 

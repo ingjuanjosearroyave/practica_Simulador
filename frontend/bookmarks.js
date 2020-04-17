@@ -73,18 +73,21 @@ let consultar = () => {
 };
 
 let modificarBookmark = (id) => {
+    /*
     axios.put("http://localhost:3000/marcadores/${this.marcador.id}", this.marcador).then((response) => {
         console.log("Modificar");
         console.log(response);
-    });
-    alert("Este metodo solo funciona en el backend");
+    });*/
+    
 };
 
 let cargarInfoBookmark = () => {
+    /*
     axios.get("http://localhost:3000/marcadores").then((response) => {
         console.log("Respuesta del Api");
         console.log(response);
         marcador = response.data.info;
+        //carga datos en los campos de los formularios
         for (let i = 0; i < marcador.length; i++) {
             let mark = "";
             mark = marcador[i].row.toString();
@@ -94,9 +97,13 @@ let cargarInfoBookmark = () => {
             document.getElementById("nombre").value = ata[2];
             document.getElementById("descripcion").value = ata[3];
         }
-    });
+    });*/
+    alert("Funcionalidad en Construcción, solo funciona en el backend");
 };
 
+/**
+ * Permite limpiar los campos del formulario
+ */
 let limpiarCampos = () => {
     document.getElementById("nombre").value = "";
     document.getElementById("url").value = "";
